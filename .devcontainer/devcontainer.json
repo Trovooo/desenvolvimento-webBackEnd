@@ -1,0 +1,42 @@
+{
+  //Definição de container
+  "name": "Projeto",
+
+  //Indica como que a imagem vai ser criada
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+
+  //Libera as portas do container
+  "forwardPorts": [8080, 3306],
+
+  //Customiza o VSCODE
+  "customizations": {
+    "vscode": {
+      //Define as extensões a ser instaladas
+      "extensions": [
+        "ms-azuretools.vscode-docker",  //DOCKER      
+        "vscjava.vscode-java-pack",      //JAVA     
+        "vmware.vscode-spring-boot",    //SPRING BOOT      
+        "vscjava.vscode-spring-boot-dashboard", //DASHBOARD DO APLICATIVO
+        "cweijan.vscode-mysql-client2", //MYSQL
+        "vscjava.vscode-spring-initializr" //inicializador de projetos Spring      
+      ],
+
+      //CONFIURAÇÕES VISUAIS DO VSCODE
+      "settings": {
+        "workbench.colorTheme": "Dark Modern",//TEMA
+        "editor.fontSize": 20, // FONTE DO EDITOR
+        "terminal.integrated.fontSize": 20, // FONTE DO TERMINAL
+        "java.server.launchMode": "Standard" //FORÇA O JAAVA A INICIAR NO MODO PADRAO
+      }
+    }
+  },
+
+  //EXECUTA NA CRIAÇÃO DO CONTAINER
+  "postCreateCommand": "/bin/bash .devcontainer/init-mysql.sh",
+  
+  //EXECUTA TODA VEZ QUE O CONTAINER É EXECUTADO
+  //INICIA O MYSQL
+  "postStartCommand": "service mysql start"
+}
