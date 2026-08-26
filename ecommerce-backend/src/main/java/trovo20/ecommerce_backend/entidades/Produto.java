@@ -1,28 +1,28 @@
 package trovo20.ecommerce_backend.entidades;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 
-
-public class Categoria {
+public class Produto{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Short id;
-
+    private short id;
     private String nome;
-
     private String descricao;
+    private short estoque;
+    private BigDecimal preco;
+    @ManyToOne
+    private Categoria categoria; //categoria_id -> c_id
     
 }
