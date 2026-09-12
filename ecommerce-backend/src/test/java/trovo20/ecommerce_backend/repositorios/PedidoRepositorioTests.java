@@ -20,7 +20,7 @@ public class PedidoRepositorioTests {
     @Autowired
     private ClienteRepositorio clienteRepositorio;
 
-    @Test
+    @Test 
     public void deveSalvarUmPedidoNovo() {
         var pedido = new Pedido();
         pedido.setData(LocalDateTime.now());
