@@ -7,7 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Sort;
@@ -16,7 +19,7 @@ import trovo20.ecommerce_backend.entidades.Categoria;
 import trovo20.ecommerce_backend.entidades.Produto;
 
 @SpringBootTest
-
+@TestMethodOrder (MethodOrderer.OrderAnnotation.class)
 
 public class ProdutoRepositorioTests {
     @Autowired
@@ -26,7 +29,7 @@ public class ProdutoRepositorioTests {
     private ProdutoRepositorio produtoRepositorio;
 
     @Test
-
+    @Order (5)
     public void deveSalvarUmProdutoNovo(){
         var produto = new Produto();
         produto.setNome("Notebook Lenovo");
@@ -48,6 +51,7 @@ public class ProdutoRepositorioTests {
     }
 
     @Test 
+    @Order (4)
     public void deveBuscarUmProdutoPorId(){
         Produto produto = produtoRepositorio.findById(Integer.parseInt("3")).orElseThrow();
         assertNotNull(produto);
@@ -55,6 +59,7 @@ public class ProdutoRepositorioTests {
     }
 
     @Test 
+    @Order (1)
     public void deveBuscarTodosOsProdutos() {
         List<Produto> produtos =  produtoRepositorio.findAll(Sort.by("nome"));
 
@@ -64,6 +69,7 @@ public class ProdutoRepositorioTests {
     }
 
     @Test 
+    @Order (2)
     public void deveExcluirUmProdutoPorId () {
         var produto = new Produto();
         produto.setNome("Teste");
@@ -85,6 +91,7 @@ public class ProdutoRepositorioTests {
     }
 
     @Test 
+    @Order (3)
     public void deveAtualizarONomeDeUmProduto () {
         var produto = new Produto();
         produto.setNome("Notebook Lenovo");
